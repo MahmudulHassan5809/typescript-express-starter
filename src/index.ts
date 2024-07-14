@@ -8,6 +8,7 @@ import cors from "cors";
 import { initializeDatabase } from "./core/db";
 import { logger } from "./core/logger";
 import { responseInterceptor } from "./core/middlewares/routerLog";
+import { responseRendererMiddleware } from "./core/middlewares/responseRenderer";
 
 const app: Express = express();
 
@@ -22,9 +23,10 @@ app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(responseInterceptor);
+app.use(responseRendererMiddleware);
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.json({ data: "Chat Api Service" });
 });
 
 const server: http.Server = http.createServer(app);
