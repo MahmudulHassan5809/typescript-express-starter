@@ -6,7 +6,7 @@ import compression from "compression";
 import cors from "cors";
 
 import { initializeDatabase } from "./core/db";
-import { logger } from "./core/logger";
+import { cliLogger } from "./core/logger";
 import { responseInterceptor } from "./core/middlewares/routerLog";
 import { responseRendererMiddleware } from "./core/middlewares/responseRenderer";
 
@@ -34,13 +34,13 @@ const server: http.Server = http.createServer(app);
 const startServer = async () => {
     try {
         await initializeDatabase();
-        logger.info("DB: ", { msg: "Database initialized successfully" });
+        cliLogger.info("Database initialized successfully");
 
         server.listen(8080, () => {
-            logger.info("server start", { msg: `Server running on http://localhost:8080` });
+            cliLogger.info(`Server running on http://localhost:8080`);
         });
     } catch (error) {
-        logger.error("DB Error", { msg: `Failed to initialize database and start server: ${error}` });
+        cliLogger.error(`Failed to initialize database and start server: ${error}`);
     }
 };
 

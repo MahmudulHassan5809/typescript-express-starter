@@ -1,4 +1,4 @@
-import { logger } from "../logger";
+import { httpLogger } from "../logger";
 import formatHTTPLoggerResponse from "../helpers/formatHttpLog";
 import { NextFunction, Request, Response } from "express";
 import { HttpStatusCodes } from "../enum";
@@ -11,20 +11,20 @@ const responseInterceptor = (req: Request, res: Response, next: NextFunction) =>
     res.send = function (body: unknown): Response {
         if (!responseSent) {
             if (res.statusCode < 400) {
-                logger.info(
+                httpLogger.info(
                     HttpStatusCodes[res.statusCode],
                     formatHTTPLoggerResponse(req, res, body, requestStartTime),
                 );
             } else {
                 if (typeof body === "string") {
-                    logger.error(body, formatHTTPLoggerResponse(req, res, body, requestStartTime));
+                    httpLogger.error(body, formatHTTPLoggerResponse(req, res, body, requestStartTime));
                 } else if (typeof body === "object" && body !== null && "message" in body) {
-                    logger.error(
+                    httpLogger.error(
                         (body as { message: string }).message,
                         formatHTTPLoggerResponse(req, res, body, requestStartTime),
                     );
                 } else {
-                    logger.error("An error occurred", formatHTTPLoggerResponse(req, res, body, requestStartTime));
+                    httpLogger.error("An error occurred", formatHTTPLoggerResponse(req, res, body, requestStartTime));
                 }
             }
 
