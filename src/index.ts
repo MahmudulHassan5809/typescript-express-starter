@@ -9,6 +9,8 @@ import { initializeDatabase } from "./core/db";
 import { cliLogger } from "./core/logger";
 import { responseInterceptor } from "./core/middlewares/routerLog";
 import { responseRendererMiddleware } from "./core/middlewares/responseRenderer";
+import "./core/di";
+import { router } from "./routers";
 
 const app: Express = express();
 
@@ -28,6 +30,8 @@ app.use(responseRendererMiddleware);
 app.get("/", (req, res) => {
     res.json({ data: "Chat Api Service" });
 });
+
+app.use("/api/v1", router);
 
 const server: http.Server = http.createServer(app);
 
