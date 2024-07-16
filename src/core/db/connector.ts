@@ -1,5 +1,4 @@
 import { DataSource } from "typeorm";
-import { User } from "../../modules/users/models";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -10,8 +9,8 @@ export const AppDataSource = new DataSource({
     database: "typescript_express_starter",
     synchronize: false,
     logging: true,
-    entities: [User],
-    migrations: [__dirname + "/migration/*.ts"],
+    entities: ["src/**/models.ts"],
+    migrations: ["src/migration/**/*.ts"],
     subscribers: [],
 });
 
