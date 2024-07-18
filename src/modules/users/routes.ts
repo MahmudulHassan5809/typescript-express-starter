@@ -6,6 +6,6 @@ import { Router } from "express";
 const userController = container.resolve(UserController);
 const usersRouter = Router();
 
-usersRouter.get("/", (req: Request, res: Response) => userController.getAllUsers(req, res));
+usersRouter.get("/", async (req: Request, res: Response) => userController.getAllUsers(req, res));
 
 export { usersRouter };

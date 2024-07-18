@@ -3,6 +3,10 @@ export enum HTTPHeaders {
     ForwardedFor = "x-forwarded-for",
 }
 
+export enum ErrorName {
+    TYPEORM = "TypeORMError",
+}
+
 export enum HTTPMethods {
     HEAD = "HEAD",
     GET = "GET",

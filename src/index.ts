@@ -1,3 +1,4 @@
+import "express-async-errors";
 import express, { Express } from "express";
 import http from "http";
 import bodyParser from "body-parser";
@@ -11,6 +12,7 @@ import { responseInterceptor } from "./core/middlewares/routerLog";
 import { responseRendererMiddleware } from "./core/middlewares/responseRenderer";
 import "./core/di";
 import { router } from "./routers";
+import { errorMiddleware } from "./core/middlewares/errorHandler";
 
 const app: Express = express();
 
@@ -32,6 +34,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1", router);
+
+app.use(errorMiddleware);
 
 const server: http.Server = http.createServer(app);
 
