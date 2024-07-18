@@ -4,7 +4,7 @@ export default interface IHTTPLoggerResponseData {
 }
 
 interface IHTTPLoggerRequest {
-    headers: unknown;
+    // headers: unknown;
     host?: string;
     baseUrl: string;
     url: string;
@@ -16,7 +16,7 @@ interface IHTTPLoggerRequest {
 }
 
 interface IHTTPLoggerResponse {
-    headers: unknown;
+    // headers: unknown;
     statusCode: number;
     requestDuration: string;
     body: unknown;

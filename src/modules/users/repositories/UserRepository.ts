@@ -10,7 +10,7 @@ export class UserRepository implements IUserRepository {
 
     async findAll(query: IAPIListingQuery): Promise<PaginateResponse<User>> {
         const [data, total] = await this.repository.findAndCount({
-            skip: (query.page - 1) * NaN,
+            skip: (query.page - 1) * query.limit,
             take: query.limit,
             order: {
                 [query.sort]: query.order,

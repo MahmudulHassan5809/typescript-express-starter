@@ -17,7 +17,7 @@ const formatHTTPLoggerResponse = (
 
     return {
         request: {
-            headers: req.headers,
+            // headers: req.headers,
             host: req.headers.host,
             baseUrl: req.baseUrl,
             url: req.url,
@@ -28,7 +28,7 @@ const formatHTTPLoggerResponse = (
             clientIp: req?.headers[HTTPHeaders.ForwardedFor] ?? req?.socket.remoteAddress,
         },
         response: {
-            headers: res.getHeaders(),
+            // headers: res.getHeaders(),
             statusCode: res.statusCode,
             requestDuration,
             body: responseBody,
