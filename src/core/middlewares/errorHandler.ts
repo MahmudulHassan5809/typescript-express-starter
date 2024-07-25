@@ -1,3 +1,4 @@
+import { ValidationException } from "../errors/exceptions";
 import { cliLogger } from "../../core/logger";
 import { BaseException } from "../errors/error";
 import { NextFunction, Request, Response } from "express";
@@ -11,8 +12,17 @@ export const errorMiddleware = (error: BaseException, _request: Request, respons
         cliLogger.error(error.message);
         message = "Something went wrong";
     }
-    response.status(status).send({
-        message,
-        status,
-    });
+    if (error instanceof ValidationException) {
+        response.status(status).send({
+            message,
+            status,
+            errors: error.errors,
+        });
+    } else {
+        response.status(status).send({
+            message,
+            status,
+            errors: null,
+        });
+    }
 };

@@ -14,7 +14,10 @@ export class DatabaseException extends BaseException {
 }
 
 export class ValidationException extends BaseException {
-    constructor(message: string) {
-        super(HttpStatusCodes.BadRequest, message);
+    public errors: Array<{ field: string; messages: string[] }>;
+
+    constructor(errors: Array<{ field: string; messages: string[] }>) {
+        super(HttpStatusCodes.BadRequest, "Validation failed");
+        this.errors = errors;
     }
 }

@@ -28,4 +28,8 @@ export class UserRepository implements IUserRepository {
 
         return paginateResponse;
     }
+
+    async findByEmail(email: string): Promise<User | null> {
+        return (await this.repository.findOne({ where: { email: email } })) || null;
+    }
 }
