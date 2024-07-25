@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import bcrypt from "bcrypt";
 import { IUserRepository } from "../users/repositories/IUserRepository";
 import { UserRegister } from "./interface";
 import { BadRequestException } from "../../core/errors/exceptions";
@@ -18,7 +19,9 @@ export class AuthService {
             throw new BadRequestException("Email is already in use");
         }
 
-        const newUser = new User(firstName, lastName, email, password);
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = new User(firstName, lastName, email, hashedPassword);
 
         const savedUser = await this.userRepository.createUser(newUser);
         const dto = plainToInstance(UserDTO, savedUser);
