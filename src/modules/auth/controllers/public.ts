@@ -10,8 +10,9 @@ export class AuthController {
         this.authService = container.resolve("AuthService");
     }
 
-    async register(req: Request, res: Response) {
+    async register(req: Request, res: Response): Promise<Response> {
         const user = req.body;
-        await this.authService.register(user);
+        const response = await this.authService.register(user);
+        return res.json(response);
     }
 }

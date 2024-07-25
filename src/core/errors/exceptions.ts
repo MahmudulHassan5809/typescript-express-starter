@@ -1,7 +1,7 @@
 import { HttpStatusCodes } from "../enum";
 import { BaseException } from "./error";
 
-export class NotFoundException extends BaseException {
+export class BadRequestException extends BaseException {
     constructor(message: string) {
         super(HttpStatusCodes.BadRequest, message);
     }

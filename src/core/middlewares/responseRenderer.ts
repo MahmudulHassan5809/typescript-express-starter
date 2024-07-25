@@ -17,7 +17,7 @@ export function responseRendererMiddleware(req: Request, res: Response, next: Ne
         const fixedResponse = {
             success,
             message,
-            data: success ? jsonData : null,
+            data: success ? jsonData.data || jsonData : null,
             code: res.statusCode,
             errors: jsonData.errors,
         };
