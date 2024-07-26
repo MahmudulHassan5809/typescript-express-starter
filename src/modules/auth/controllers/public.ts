@@ -15,4 +15,10 @@ export class AuthController {
         const response = await this.authService.register(user);
         return res.json(response);
     }
+
+    async login(req: Request, res: Response): Promise<Response> {
+        const data = req.body;
+        const response = await this.authService.login(data);
+        return res.json(response);
+    }
 }
