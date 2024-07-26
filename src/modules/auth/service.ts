@@ -14,7 +14,7 @@ export class AuthService {
 
     async register(data: UserRegister): Promise<UserDTO> {
         const { firstName, lastName, email, password } = data;
-        const isEmailExists = await this.userRepository.findByEmail(email);
+        const isEmailExists = await this.userRepository.get({ where: { email } });
         if (isEmailExists) {
             throw new BadRequestException("Email is already in use");
         }
@@ -33,7 +33,7 @@ export class AuthService {
 
     async login(data: UserLogin): Promise<{ accessToken: string; refreshToken: string }> {
         const { email, password } = data;
-        const user = await this.userRepository.findByEmail(email);
+        const user = await this.userRepository.get({ where: { email } });
         if (!user) {
             throw new BadRequestException("Invalid email or password");
         }

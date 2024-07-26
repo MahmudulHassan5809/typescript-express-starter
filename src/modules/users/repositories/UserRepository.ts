@@ -3,13 +3,16 @@ import { IUserRepository } from "./IUserRepository";
 import { User } from "../models";
 import { injectable } from "tsyringe";
 import { IAPIListingQuery, PaginateResponse } from "../../../core/interfaces/pagination";
+import { BaseRepository } from "../../../core/repositories/BaseRepository";
 
 @injectable()
-export class UserRepository implements IUserRepository {
-    constructor(private repository: Repository<User>) {}
+export class UserRepository extends BaseRepository<User> implements IUserRepository {
+    constructor(private userRepo: Repository<User>) {
+        super(userRepo);
+    }
 
     async findAll(query: IAPIListingQuery): Promise<PaginateResponse<User>> {
-        const [data, total] = await this.repository.findAndCount({
+        const [data, total] = await this.userRepo.findAndCount({
             skip: (query.page - 1) * query.limit,
             take: query.limit,
             order: {
@@ -29,11 +32,7 @@ export class UserRepository implements IUserRepository {
         return paginateResponse;
     }
 
-    async findByEmail(email: string): Promise<User | null> {
-        return (await this.repository.findOne({ where: { email: email } })) || null;
-    }
-
     async createUser(data: User): Promise<User> {
-        return await this.repository.save(data);
+        return await this.userRepo.save(data);
     }
 }
