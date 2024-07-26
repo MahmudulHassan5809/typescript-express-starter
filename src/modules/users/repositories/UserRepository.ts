@@ -3,7 +3,7 @@ import { IUserRepository } from "./IUserRepository";
 import { User } from "../models";
 import { injectable } from "tsyringe";
 import { IAPIListingQuery, PaginateResponse } from "../../../core/interfaces/pagination";
-import { BaseRepository } from "../../../core/repositories/BaseRepository";
+import { BaseRepository } from "../../../core/repositories";
 
 @injectable()
 export class UserRepository extends BaseRepository<User> implements IUserRepository {
