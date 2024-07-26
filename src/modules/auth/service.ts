@@ -7,6 +7,7 @@ import { BadRequestException } from "../../core/errors/exceptions";
 import { User } from "../users/models";
 import { plainToInstance } from "class-transformer";
 import { UserDTO } from "../users/dtos";
+import { Cache } from "../../core/cache";
 
 @injectable()
 export class AuthService {
@@ -43,6 +44,8 @@ export class AuthService {
         }
         const accessToken = this.generateToken(user, "access");
         const refreshToken = this.generateToken(user, "refresh");
+
+        Cache.set(`user_data_${user.id}`, user, 36000);
         return { accessToken, refreshToken };
     }
 }

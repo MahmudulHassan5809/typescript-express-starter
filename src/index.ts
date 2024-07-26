@@ -13,6 +13,7 @@ import { responseRendererMiddleware } from "./core/middlewares/responseRenderer"
 import "./core/di";
 import { router } from "./routers";
 import { errorMiddleware } from "./core/middlewares/errorHandler";
+import { RedisBackend, Cache } from "./core/cache";
 
 const app: Express = express();
 
@@ -43,6 +44,9 @@ const startServer = async () => {
     try {
         await initializeDatabase();
         cliLogger.info("Database initialized successfully");
+
+        const redisBackend = new RedisBackend("redis://default:foobared@localhost:6379/0");
+        Cache.init(redisBackend);
 
         server.listen(8080, () => {
             cliLogger.info(`Server running on http://localhost:8080`);
