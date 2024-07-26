@@ -21,3 +21,9 @@ export class ValidationException extends BaseException {
         this.errors = errors;
     }
 }
+
+export class UnauthorizedException extends BaseException {
+    constructor(message: string) {
+        super(HttpStatusCodes.Unauthorized, message);
+    }
+}
