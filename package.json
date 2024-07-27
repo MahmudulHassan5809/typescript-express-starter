@@ -12,12 +12,20 @@
         "typeorm:migrate": "npx typeorm-ts-node-esm migration:run -d src/core/db/connector.ts",
         "typeorm:revert": "npx typeorm-ts-node-esm migration:revert -d src/core/db/connector.ts",
         "typeorm:drop": "npx typeorm-ts-node-esm schema:drop -d src/core/db/connector.ts",
-        "seeders": "ts-node src/seeders/runSeeders.ts"
+        "seeders": "ts-node src/seeders/runSeeders.ts",
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "*.{ts,js}": "eslint --cache --fix",
+        "*.{ts,js,css,md}": "prettier --write",
+        "*.js": "eslint --cache --fix",
+        "*.{js,css,md}": "prettier --write"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@eslint/js": "^9.8.0",
         "@types/bcrypt": "^5.0.2",
         "@types/body-parser": "^1.19.5",
         "@types/compression": "^1.7.5",
@@ -31,14 +39,18 @@
         "@types/yamljs": "^0.2.34",
         "@typescript-eslint/eslint-plugin": "^7.16.0",
         "@typescript-eslint/parser": "^7.16.0",
-        "eslint": "^8.57.0",
+        "eslint": "^9.8.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-prettier": "^5.1.3",
+        "globals": "^15.8.0",
+        "husky": "^8.0.0",
+        "lint-staged": "^15.2.7",
         "nodemon": "^3.1.4",
         "prettier": "^3.3.2",
         "ts-node": "^10.9.2",
-        "typescript": "^5.5.3"
+        "typescript": "^5.5.3",
+        "typescript-eslint": "^7.17.0"
     },
     "dependencies": {
         "@types/morgan": "^1.9.9",
