@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { RedisBackend } from "./redisBackend";
+import { cliLogger } from "../logger";
 
 export class CacheManager {
     private backend: RedisBackend | null = null;
@@ -20,7 +21,7 @@ export class CacheManager {
             const data = await this.getBackend().get(key);
             return data ? JSON.parse(data) : null;
         } catch (error) {
-            console.error("Error getting cache data:", error);
+            cliLogger.error("Error getting cache data:", error);
             return null;
         }
     }
@@ -34,7 +35,7 @@ export class CacheManager {
             }
             return result;
         } catch (error) {
-            console.error("Error getting hash cache data:", error);
+            cliLogger.error("Error getting hash cache data:", error);
             return {};
         }
     }
@@ -43,7 +44,7 @@ export class CacheManager {
         try {
             await this.getBackend().set(key, JSON.stringify(value), ttl);
         } catch (error) {
-            console.error("Error setting cache data:", error);
+            cliLogger.error("Error setting cache data:", error);
         }
     }
 
@@ -51,7 +52,7 @@ export class CacheManager {
         try {
             await this.getBackend().delete(key);
         } catch (error) {
-            console.error("Error deleting cache data:", error);
+            cliLogger.error("Error deleting cache data:", error);
         }
     }
 
@@ -60,7 +61,7 @@ export class CacheManager {
             const data = await this.getBackend().getDelete(key);
             return data ? JSON.parse(data) : null;
         } catch (error) {
-            console.error("Error getting and deleting cache data:", error);
+            cliLogger.error("Error getting and deleting cache data:", error);
             return null;
         }
     }
@@ -69,7 +70,7 @@ export class CacheManager {
         try {
             await this.set(key, updatedValue);
         } catch (error) {
-            console.error("Error updating cache data:", error);
+            cliLogger.error("Error updating cache data:", error);
         }
     }
 
