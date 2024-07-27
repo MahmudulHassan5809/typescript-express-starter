@@ -15,6 +15,7 @@ import { router } from "./routers";
 import { errorMiddleware } from "./core/middlewares/errorHandler";
 import { RedisBackend, Cache } from "./core/cache";
 import { swaggerDocs } from "./core/swagger";
+import { env } from "./core/config";
 
 const app: Express = express();
 
@@ -46,13 +47,14 @@ const startServer = async () => {
         await initializeDatabase();
         cliLogger.info("Database initialized successfully");
 
-        const redisBackend = new RedisBackend("redis://default:foobared@localhost:6379/0");
+        const redisBackend = new RedisBackend(env.redis_url!);
         Cache.init(redisBackend);
 
-        swaggerDocs(app, 8080);
+        const port = env.port;
+        swaggerDocs(app, Number(port));
 
         server.listen(8080, () => {
-            cliLogger.info(`Server running on http://localhost:8080`);
+            cliLogger.info(`Server running on http://localhost:${port}`);
         });
     } catch (error) {
         cliLogger.error(`Failed to initialize database and start server: ${error}`);
