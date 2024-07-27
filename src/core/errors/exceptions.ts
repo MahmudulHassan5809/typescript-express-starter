@@ -27,3 +27,9 @@ export class UnauthorizedException extends BaseException {
         super(HttpStatusCodes.Unauthorized, message);
     }
 }
+
+export class ForbiddenException extends BaseException {
+    constructor(message: string) {
+        super(HttpStatusCodes.Forbidden, message);
+    }
+}

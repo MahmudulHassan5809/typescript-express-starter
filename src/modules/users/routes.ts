@@ -1,12 +1,14 @@
 import { container } from "tsyringe";
 import { Request, Response } from "express";
-import { UserController } from "./controllers/public";
+import { AdminUserController } from "./controllers/admin";
 import { Router } from "express";
-import { authMiddleware } from "../../core/middlewares/authentication";
+import { authMiddleware, isAdminMiddleware } from "../../core/middlewares";
 
-const userController = container.resolve(UserController);
+const adminUserController = container.resolve(AdminUserController);
 const usersRouter = Router();
 
-usersRouter.get("/", authMiddleware, async (req: Request, res: Response) => userController.getAllUsers(req, res));
+usersRouter.use(authMiddleware, isAdminMiddleware);
+
+usersRouter.get("/", async (req: Request, res: Response) => adminUserController.getAllUsers(req, res));
 
 export { usersRouter };

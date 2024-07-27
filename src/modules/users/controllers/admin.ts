@@ -4,7 +4,7 @@ import { UserService } from "../service";
 import { extractQueryParams } from "../../../core/helpers/utils";
 
 @injectable()
-export class UserController {
+export class AdminUserController {
     private userService: UserService;
 
     constructor() {
