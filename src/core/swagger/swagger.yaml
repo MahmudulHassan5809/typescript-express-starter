@@ -9,6 +9,8 @@ servers:
 paths:
     /api/v1/auth/login/:
         post:
+            tags:
+                - auth
             summary: User login
             requestBody:
                 description: User login credentials
@@ -43,6 +45,8 @@ paths:
 
     /api/v1/auth/register/:
         post:
+            tags:
+                - auth
             summary: Register a new user
             requestBody:
                 description: User registration details
@@ -67,6 +71,8 @@ paths:
 
     /api/v1/users/:
         get:
+            tags:
+                - admin-users
             summary: Retrieve a list of users
             security:
                 - bearerAuth: []
