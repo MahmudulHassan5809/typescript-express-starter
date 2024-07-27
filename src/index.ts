@@ -14,6 +14,7 @@ import "./core/di";
 import { router } from "./routers";
 import { errorMiddleware } from "./core/middlewares/errorHandler";
 import { RedisBackend, Cache } from "./core/cache";
+import { swaggerDocs } from "./core/swagger";
 
 const app: Express = express();
 
@@ -47,6 +48,8 @@ const startServer = async () => {
 
         const redisBackend = new RedisBackend("redis://default:foobared@localhost:6379/0");
         Cache.init(redisBackend);
+
+        swaggerDocs(app, 8080);
 
         server.listen(8080, () => {
             cliLogger.info(`Server running on http://localhost:8080`);
