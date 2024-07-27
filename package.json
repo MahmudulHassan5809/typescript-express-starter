@@ -11,7 +11,8 @@
         "typeorm:generate": "npx typeorm-ts-node-esm migration:generate -d src/core/db/connector.ts",
         "typeorm:migrate": "npx typeorm-ts-node-esm migration:run -d src/core/db/connector.ts",
         "typeorm:revert": "npx typeorm-ts-node-esm migration:revert -d src/core/db/connector.ts",
-        "typeorm:drop": "npx typeorm-ts-node-esm schema:drop -d src/core/db/connector.ts"
+        "typeorm:drop": "npx typeorm-ts-node-esm schema:drop -d src/core/db/connector.ts",
+        "seeders": "ts-node src/seeders/runSeeders.ts"
     },
     "keywords": [],
     "author": "",
