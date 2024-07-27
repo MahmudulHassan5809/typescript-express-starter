@@ -16,11 +16,10 @@
         "prepare": "husky install"
     },
     "lint-staged": {
-        "src/**/*.{ts,tsx}": [
-            "eslint --fix",
-            "prettier --write",
-            "git add"
-        ]
+        "*.{ts,js}": "eslint --cache --fix",
+        "*.{ts,js,css,md}": "prettier --write",
+        "*.js": "eslint --cache --fix",
+        "*.{js,css,md}": "prettier --write"
     },
     "keywords": [],
     "author": "",
