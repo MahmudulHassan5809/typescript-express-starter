@@ -1,1 +1,248 @@
-[{"/home/mahmudul/Desktop/projects/typescript-express-starter/src/core/cache/index.ts":"1"},{"size":107,"mtime":1722101258760,"results":"2","hashOfConfig":"3"},{"filePath":"4","messages":"5","suppressedMessages":"6","errorCount":1,"fatalErrorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0,"source":null},"fc4acq","/home/mahmudul/Desktop/projects/typescript-express-starter/src/core/cache/index.ts",["7"],[],{"ruleId":"8","severity":2,"message":"9","line":3,"column":7,"nodeType":null,"messageId":"10","endLine":3,"endColumn":11},"@typescript-eslint/no-unused-vars","'test' is assigned a value but never used.","unusedVar"]
+[
+    {
+        "/home/mahmudul/Desktop/projects/typescript-express-starter/src/core/cache/index.ts": "1",
+        "/home/mahmudul/Desktop/projects/typescript-express-starter/src/core/cache/cacheManager.ts": "2",
+        "/home/mahmudul/Desktop/projects/typescript-express-starter/src/modules/users/controllers/admin.ts": "3"
+    },
+    {
+        "size": 107,
+        "mtime": 1722101258760,
+        "results": "4",
+        "hashOfConfig": "5"
+    },
+    {
+        "size": 3582,
+        "mtime": 1722151604998,
+        "results": "6",
+        "hashOfConfig": "5"
+    },
+    {
+        "size": 693,
+        "mtime": 1722151604998,
+        "results": "7",
+        "hashOfConfig": "5"
+    },
+    {
+        "filePath": "8",
+        "messages": "9",
+        "suppressedMessages": "10",
+        "errorCount": 1,
+        "fatalErrorCount": 0,
+        "warningCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0,
+        "source": null
+    },
+    "fc4acq",
+    {
+        "filePath": "11",
+        "messages": "12",
+        "suppressedMessages": "13",
+        "errorCount": 0,
+        "fatalErrorCount": 0,
+        "warningCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+    },
+    {
+        "filePath": "14",
+        "messages": "15",
+        "suppressedMessages": "16",
+        "errorCount": 0,
+        "fatalErrorCount": 0,
+        "warningCount": 0,
+        "fixableErrorCount": 0,
+        "fixableWarningCount": 0
+    },
+    "/home/mahmudul/Desktop/projects/typescript-express-starter/src/core/cache/index.ts",
+    [
+        "17"
+    ],
+    [],
+    "/home/mahmudul/Desktop/projects/typescript-express-starter/src/core/cache/cacheManager.ts",
+    [],
+    [
+        "18",
+        "19",
+        "20"
+    ],
+    "/home/mahmudul/Desktop/projects/typescript-express-starter/src/modules/users/controllers/admin.ts",
+    [],
+    [],
+    {
+        "ruleId": "21",
+        "severity": 2,
+        "message": "22",
+        "line": 3,
+        "column": 7,
+        "nodeType": null,
+        "messageId": "23",
+        "endLine": 3,
+        "endColumn": 11
+    },
+    {
+        "ruleId": "24",
+        "severity": 2,
+        "message": "25",
+        "line": 79,
+        "column": 34,
+        "nodeType": "26",
+        "messageId": "27",
+        "endLine": 79,
+        "endColumn": 37,
+        "suggestions": "28",
+        "suppressions": "29"
+    },
+    {
+        "ruleId": "24",
+        "severity": 2,
+        "message": "25",
+        "line": 81,
+        "column": 57,
+        "nodeType": "26",
+        "messageId": "27",
+        "endLine": 81,
+        "endColumn": 60,
+        "suggestions": "30",
+        "suppressions": "31"
+    },
+    {
+        "ruleId": "24",
+        "severity": 2,
+        "message": "25",
+        "line": 92,
+        "column": 35,
+        "nodeType": "26",
+        "messageId": "27",
+        "endLine": 92,
+        "endColumn": 38,
+        "suggestions": "32",
+        "suppressions": "33"
+    },
+    "@typescript-eslint/no-unused-vars",
+    "'test' is assigned a value but never used.",
+    "unusedVar",
+    "@typescript-eslint/no-explicit-any",
+    "Unexpected any. Specify a different type.",
+    "TSAnyKeyword",
+    "unexpectedAny",
+    [
+        "34",
+        "35"
+    ],
+    [
+        "36"
+    ],
+    [
+        "37",
+        "38"
+    ],
+    [
+        "39"
+    ],
+    [
+        "40",
+        "41"
+    ],
+    [
+        "42"
+    ],
+    {
+        "messageId": "43",
+        "fix": "44",
+        "desc": "45"
+    },
+    {
+        "messageId": "46",
+        "fix": "47",
+        "desc": "48"
+    },
+    {
+        "kind": "49",
+        "justification": "50"
+    },
+    {
+        "messageId": "43",
+        "fix": "51",
+        "desc": "45"
+    },
+    {
+        "messageId": "46",
+        "fix": "52",
+        "desc": "48"
+    },
+    {
+        "kind": "49",
+        "justification": "50"
+    },
+    {
+        "messageId": "43",
+        "fix": "53",
+        "desc": "45"
+    },
+    {
+        "messageId": "46",
+        "fix": "54",
+        "desc": "48"
+    },
+    {
+        "kind": "49",
+        "justification": "50"
+    },
+    "suggestUnknown",
+    {
+        "range": "55",
+        "text": "56"
+    },
+    "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct.",
+    "suggestNever",
+    {
+        "range": "57",
+        "text": "58"
+    },
+    "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of.",
+    "directive",
+    "",
+    {
+        "range": "59",
+        "text": "56"
+    },
+    {
+        "range": "60",
+        "text": "58"
+    },
+    {
+        "range": "61",
+        "text": "56"
+    },
+    {
+        "range": "62",
+        "text": "58"
+    },
+    [
+        2413,
+        2416
+    ],
+    "unknown",
+    [
+        2413,
+        2416
+    ],
+    "never",
+    [
+        2582,
+        2585
+    ],
+    [
+        2582,
+        2585
+    ],
+    [
+        3028,
+        3031
+    ],
+    [
+        3028,
+        3031
+    ]
+]

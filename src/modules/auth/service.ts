@@ -8,6 +8,7 @@ import { User } from "../users/models";
 import { plainToInstance } from "class-transformer";
 import { UserDTO } from "../users/dtos";
 import { Cache } from "../../core/cache";
+import { appQueue } from "../../workers/connecction";
 
 @injectable()
 export class AuthService {
@@ -23,6 +24,7 @@ export class AuthService {
         const newUser = new User(firstName, lastName, email, hashedPassword);
         const savedUser = await this.userRepository.createUser(newUser);
         const dto = plainToInstance(UserDTO, savedUser);
+
         return dto;
     }
 
@@ -46,6 +48,7 @@ export class AuthService {
         const refreshToken = this.generateToken(user, "refresh");
 
         Cache.set(`user_data_${user.id}`, user, 36000);
+        await appQueue.add("sendEmail", { email });
         return { accessToken, refreshToken };
     }
 }

@@ -16,6 +16,7 @@ import { errorMiddleware } from "./core/middlewares/errorHandler";
 import { RedisBackend, Cache } from "./core/cache";
 import { swaggerDocs } from "./core/swagger";
 import { env } from "./core/config";
+import "./workers/connecction";
 
 const app: Express = express();
 
