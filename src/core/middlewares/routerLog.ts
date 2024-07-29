@@ -8,7 +8,7 @@ const responseInterceptor = (req: Request, res: Response, next: NextFunction) =>
     const originalSend = res.send;
     let responseSent = false;
 
-    const skipLoggingPaths = ["/api/v1/login/", "/api-docs"];
+    const skipLoggingPaths = ["/api/v1/login/", "/api-docs", "/task-monitor"];
 
     const shouldSkipLogging = (path: string) => {
         return skipLoggingPaths.some((skipPath) => path.startsWith(skipPath));

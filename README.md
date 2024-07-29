@@ -25,7 +25,7 @@ A starter template for building a RESTful API using TypeScript, Express, TypeORM
 
 1. Clone the repository and install dependencies:
     ```sh
-    git clone https://github.com/yourusername/typescript-express-starter.git
+    git clone https://github.com/MahmudulHassan5809/typescript-express-starter.git
     cd typescript-express-starter
     npm install
     ```
@@ -34,8 +34,15 @@ A starter template for building a RESTful API using TypeScript, Express, TypeORM
 2. Set up environment variables in a `.env` file.
 
 3. Run the application:
+
     ```sh
-    npm run dev
+    npm run start
+    ```
+
+    ```sh
+        http://localhost:8080
+        http://localhost:8080/api-docs
+        http://localhost:8080/task-monitor
     ```
 
 ## Project Structure

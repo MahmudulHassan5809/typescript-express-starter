@@ -17,6 +17,7 @@ import { RedisBackend, Cache } from "./core/cache";
 import { swaggerDocs } from "./core/swagger";
 import { env } from "./core/config";
 import "./workers/connecction";
+import { monitor } from "./workers/monitor";
 
 const app: Express = express();
 
@@ -53,6 +54,9 @@ const startServer = async () => {
 
         const port = env.port;
         swaggerDocs(app, Number(port));
+
+        await monitor.init();
+        app.use("/task-monitor", monitor.router);
 
         server.listen(8080, () => {
             cliLogger.info(`Server running on http://localhost:${port}`);
