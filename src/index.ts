@@ -49,17 +49,17 @@ const startServer = async () => {
         await initializeDatabase();
         cliLogger.info("Database initialized successfully");
 
-        const redisBackend = new RedisBackend(env.redis_url!);
+        const redisBackend = new RedisBackend(env.REDIS_URL!);
         Cache.init(redisBackend);
 
-        const port = env.port;
-        swaggerDocs(app, Number(port));
+        const PORT = env.PORT;
+        swaggerDocs(app, Number(PORT));
 
         await monitor.init();
         app.use("/task-monitor", monitor.router);
 
         server.listen(8080, () => {
-            cliLogger.info(`Server running on http://localhost:${port}`);
+            cliLogger.info(`Server running on http://localhost:${PORT}`);
         });
     } catch (error) {
         cliLogger.error(`Failed to initialize database and start server: ${error}`);

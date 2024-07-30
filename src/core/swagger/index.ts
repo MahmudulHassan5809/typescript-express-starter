@@ -6,7 +6,7 @@ import path from "path";
 
 const swaggerDocument = yaml.load(path.resolve(__dirname, "./swagger.yaml"));
 
-const swaggerDocs = (app: Express, port: number) => {
+const swaggerDocs = (app: Express, PORT: number) => {
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     app.get("/api-docs.json", (req, res) => {
@@ -14,7 +14,7 @@ const swaggerDocs = (app: Express, port: number) => {
         res.send(swaggerDocument);
     });
 
-    console.log(`Swagger docs available at http://localhost:${port}/api-docs`);
+    console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
 };
 
 export { swaggerDocs };

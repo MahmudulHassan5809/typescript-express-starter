@@ -6,12 +6,13 @@ if (DEBUG) {
 const PORT = process.env.PORT || 3000;
 
 export const env = {
-    port: PORT,
-    debug: DEBUG,
-    redis_url: process.env.REDIS_URL,
-    db_username: process.env.DB_USERNAME,
-    db_password: process.env.DB_PASSWORD,
-    db_name: process.env.DB_NAME,
-    db_host: process.env.DB_HOST,
-    db_port: process.env.DB_PORT,
+    PORT: PORT,
+    DEBUG: DEBUG,
+    REDIS_URL: process.env.REDIS_URL,
+    DB_USERNAME: process.env.DB_USERNAME,
+    DB_PASSWORD: process.env.DB_PASSWORD,
+    DB_NAME: process.env.DB_NAME,
+    DB_HOST: process.env.DB_HOST,
+    DB_PORT: process.env.DB_PORT,
+    STAGE: process.env.ENV,
 };

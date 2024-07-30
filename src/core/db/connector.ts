@@ -3,11 +3,11 @@ import { env } from "../config";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: env.db_host,
-    port: Number(env.db_port!),
-    username: env.db_username,
-    password: env.db_password,
-    database: env.db_name,
+    host: env.DB_HOST,
+    port: Number(env.DB_PORT!),
+    username: env.DB_USERNAME,
+    password: env.DB_PASSWORD,
+    database: env.DB_NAME,
     synchronize: false,
     logging: true,
     entities: ["src/**/models.ts"],
