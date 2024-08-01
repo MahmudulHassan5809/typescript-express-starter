@@ -1,26 +1,38 @@
-import { DataSource } from "typeorm";
-import { env } from "../config";
+import { injectable } from "inversify";
+import { ENV } from "../config";
+import { DataSource, DataSourceOptions, EntityTarget, ObjectLiteral, Repository } from "typeorm";
 
-export const AppDataSource = new DataSource({
-    type: "postgres",
-    host: env.DB_HOST,
-    port: Number(env.DB_PORT!),
-    username: env.DB_USERNAME,
-    password: env.DB_PASSWORD,
-    database: env.DB_NAME,
-    synchronize: false,
-    logging: true,
-    entities: ["src/**/models.ts"],
-    migrations: ["src/migrations/**/*.ts"],
-    subscribers: [],
-});
+@injectable()
+export class DBConnector {
+    private static myDataSource: DataSource;
 
-export const initializeDatabase = async () => {
-    try {
-        await AppDataSource.initialize();
-        console.log("Data Source has been initialized!");
-    } catch (err) {
-        console.error("Error during Data Source initialization:", err);
-        throw err;
+    private async getConnection(): Promise<DataSource> {
+        if (DBConnector.myDataSource?.isInitialized) {
+            console.log("Connection already Established");
+            return DBConnector.myDataSource;
+        }
+
+        try {
+            const options: DataSourceOptions = {
+                type: "postgres",
+                url: ENV.DB_URL,
+                synchronize: false,
+                logging: true,
+                entities: ["src/**/models.ts"], // Ensure the path to your entities is correct
+                migrations: ["src/migrations/**/*.ts"],
+                subscribers: [],
+            };
+            DBConnector.myDataSource = await new DataSource(options).initialize();
+            console.log("Connection Established!");
+        } catch (error) {
+            console.log(`Connection Failed. Error: ${error}`);
+        }
+
+        return DBConnector.myDataSource;
     }
-};
+
+    public async getRepository<T extends ObjectLiteral>(entity: EntityTarget<T>): Promise<Repository<T>> {
+        const connection = await this.getConnection();
+        return connection.getRepository(entity);
+    }
+}

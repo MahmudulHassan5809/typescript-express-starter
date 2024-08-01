@@ -1,3 +1,14 @@
 {
-    "cSpell.words": ["bullmq", "Cacheable", "connecction", "dtos", "IAPI", "IHTTP", "Logform", "tsyringe", "typeorm"]
+    "cSpell.words": [
+        "bullmq",
+        "Cacheable",
+        "connecction",
+        "dtos",
+        "IAPI",
+        "IHTTP",
+        "inversify",
+        "Logform",
+        "tsyringe",
+        "typeorm"
+    ]
 }

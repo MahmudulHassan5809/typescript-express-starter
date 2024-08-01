@@ -1,1 +1,1 @@
-export { AppDataSource, initializeDatabase } from "./connector";
+export { DBConnector } from "./connector";

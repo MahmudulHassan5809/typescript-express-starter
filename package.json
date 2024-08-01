@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest --runInBand",
         "start": "nodemon",
         "lint": "eslint src/**/*.ts",
         "format": "eslint src/**/*.ts --fix",
@@ -15,7 +15,6 @@
         "seeders": "ts-node src/seeders/runSeeders.ts",
         "start:worker": "ts-node src/workers/index.ts",
         "prepare": "husky install",
-        "test": "jest --runInBand",
         "test:watch": "jest --watch",
         "test:coverage": "jest --coverage"
     },
@@ -76,6 +75,7 @@
         "express": "^4.19.2",
         "express-async-errors": "^3.1.1",
         "flatted": "^3.3.1",
+        "inversify": "^6.0.2",
         "ioredis": "^5.4.1",
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.5.0",
@@ -83,7 +83,6 @@
         "postgres": "^3.4.4",
         "reflect-metadata": "^0.2.2",
         "swagger-ui-express": "^5.0.1",
-        "tsyringe": "^4.8.0",
         "typeorm": "^0.3.20",
         "winston": "^3.13.1",
         "yamljs": "^0.3.0"

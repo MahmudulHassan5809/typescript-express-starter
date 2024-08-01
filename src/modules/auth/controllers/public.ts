@@ -1,14 +1,11 @@
 import { Request, Response } from "express";
-import { container, injectable } from "tsyringe";
 import { AuthService } from "../service";
+import { inject, injectable } from "inversify";
+import { TYPES } from "../../../core/di/type";
 
 @injectable()
 export class AuthController {
-    private authService: AuthService;
-
-    constructor() {
-        this.authService = container.resolve("AuthService");
-    }
+    constructor(@inject(TYPES.AuthService) private authService: AuthService) {}
 
     async register(req: Request, res: Response): Promise<Response> {
         const user = req.body;

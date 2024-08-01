@@ -1,9 +1,14 @@
-import { Repository, FindOneOptions, ObjectLiteral } from "typeorm";
+// import { DBConnector } from "../../core/db";
+// import { Repository, FindOneOptions, ObjectLiteral, EntityTarget } from "typeorm";
 
-export class BaseRepository<T extends ObjectLiteral> {
-    constructor(private repository: Repository<T>) {}
+// export class BaseRepository<T extends ObjectLiteral> {
+//     protected model: EntityTarget<T>;
 
-    async get(options: FindOneOptions<T>): Promise<T | null> {
-        return (await this.repository.findOne(options)) || null;
-    }
-}
+//     constructor(dbConnector: DBConnector, model: EntityTarget<T>) {
+//         this.model = model;
+//     }
+
+//     async get(options: FindOneOptions<T>): Promise<T | null> {
+//         return (await this.repository.findOne(options)) || null;
+//     }
+// }

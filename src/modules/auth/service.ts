@@ -1,4 +1,3 @@
-import { inject, injectable } from "tsyringe";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { IUserRepository } from "../users/repositories/IUserRepository";
@@ -9,10 +8,12 @@ import { plainToInstance } from "class-transformer";
 import { UserDTO } from "../users/dtos";
 import { Cache } from "../../core/cache";
 import { appQueue } from "../../workers/connecction";
+import { TYPES } from "../../core/di/type";
+import { inject, injectable } from "inversify";
 
 @injectable()
 export class AuthService {
-    constructor(@inject("UserRepository") private userRepository: IUserRepository) {}
+    constructor(@inject(TYPES.IUserRepository) private userRepository: IUserRepository) {}
 
     async register(data: UserRegister): Promise<UserDTO> {
         const { firstName, lastName, email, password } = data;
