@@ -1,5 +1,5 @@
 export const TYPES = {
-    DBConnector: Symbol.for("DBConnector"),
+    TypeORMDataSource: Symbol("TypeORMDataSource"),
     UserService: Symbol.for("UserService"),
     IUserRepository: Symbol.for("IUserRepository"),
     AdminUserController: Symbol.for("AdminUserController"),

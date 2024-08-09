@@ -1,38 +1,52 @@
-import { injectable } from "inversify";
+import { DataSource, DataSourceOptions } from "typeorm";
 import { ENV } from "../config";
-import { DataSource, DataSourceOptions, EntityTarget, ObjectLiteral, Repository } from "typeorm";
+const options: DataSourceOptions = {
+    type: "postgres",
+    url: ENV.DB_URL,
+    synchronize: false,
+    logging: true,
+    entities: ["src/**/models.ts"], // Ensure the path to your entities is correct
+    migrations: ["src/migrations/**/*.ts"],
+    subscribers: [],
+};
 
-@injectable()
-export class DBConnector {
-    private static myDataSource: DataSource;
+export const AppDataSource = new DataSource(options);
 
-    private async getConnection(): Promise<DataSource> {
-        if (DBConnector.myDataSource?.isInitialized) {
-            console.log("Connection already Established");
-            return DBConnector.myDataSource;
-        }
+// import { injectable } from "inversify";
+// import { ENV } from "../config";
+// import { DataSource, DataSourceOptions, EntityTarget, ObjectLiteral, Repository } from "typeorm";
 
-        try {
-            const options: DataSourceOptions = {
-                type: "postgres",
-                url: ENV.DB_URL,
-                synchronize: false,
-                logging: true,
-                entities: ["src/**/models.ts"], // Ensure the path to your entities is correct
-                migrations: ["src/migrations/**/*.ts"],
-                subscribers: [],
-            };
-            DBConnector.myDataSource = await new DataSource(options).initialize();
-            console.log("Connection Established!");
-        } catch (error) {
-            console.log(`Connection Failed. Error: ${error}`);
-        }
+// @injectable()
+// export class DBConnector {
+//     public static myDataSource: DataSource;
 
-        return DBConnector.myDataSource;
-    }
+//     private async getConnection(): Promise<DataSource> {
+//         if (DBConnector.myDataSource?.isInitialized) {
+//             console.log("Connection already Established");
+//             return DBConnector.myDataSource;
+//         }
 
-    public async getRepository<T extends ObjectLiteral>(entity: EntityTarget<T>): Promise<Repository<T>> {
-        const connection = await this.getConnection();
-        return connection.getRepository(entity);
-    }
-}
+//         try {
+//             const options: DataSourceOptions = {
+//                 type: "postgres",
+//                 url: ENV.DB_URL,
+//                 synchronize: false,
+//                 logging: true,
+//                 entities: ["src/**/models.ts"], // Ensure the path to your entities is correct
+//                 migrations: ["src/migrations/**/*.ts"],
+//                 subscribers: [],
+//             };
+//             DBConnector.myDataSource = await new DataSource(options).initialize();
+//             console.log("Connection Established!");
+//         } catch (error) {
+//             console.log(`Connection Failed. Error: ${error}`);
+//         }
+
+//         return DBConnector.myDataSource;
+//     }
+
+//     public async getRepository<T extends ObjectLiteral>(entity: EntityTarget<T>): Promise<Repository<T>> {
+//         const connection = await this.getConnection();
+//         return connection.getRepository(entity);
+//     }
+// }

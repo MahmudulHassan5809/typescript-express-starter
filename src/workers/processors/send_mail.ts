@@ -1,5 +1,5 @@
 import { Worker, Job } from "bullmq";
-import { redisConnection } from "../connecction";
+import { redisConnection } from "../connection";
 const worker = new Worker(
     "appQueue",
     async (job: Job) => {

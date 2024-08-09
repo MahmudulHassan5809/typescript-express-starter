@@ -1,18 +1,20 @@
-import { FindOneOptions } from "typeorm";
+import { DataSource, FindOneOptions, Repository } from "typeorm";
 import { IUserRepository } from "./IUserRepository";
 import { User } from "../models";
 import { IAPIListingQuery, PaginateResponse } from "../../../core/interfaces/pagination";
-import { DBConnector } from "../../../core/db";
 import { TYPES } from "../../../core/di/type";
 import { inject, injectable } from "inversify";
 
 @injectable()
 export class UserRepository implements IUserRepository {
-    constructor(@inject(TYPES.DBConnector) private readonly dbConnector: DBConnector) {}
+    private readonly _repository: Repository<User>;
+
+    constructor(@inject(TYPES.TypeORMDataSource) dataSource: DataSource) {
+        this._repository = dataSource.getRepository(User);
+    }
 
     async findAll(query: IAPIListingQuery): Promise<PaginateResponse<User>> {
-        const repo = await this.dbConnector.getRepository(User);
-        const [data, total] = await repo.findAndCount({
+        const [data, total] = await this._repository.findAndCount({
             skip: (query.page - 1) * query.limit,
             take: query.limit,
             order: {
@@ -33,12 +35,10 @@ export class UserRepository implements IUserRepository {
     }
 
     async get(options: FindOneOptions<User>): Promise<User | null> {
-        const repo = await this.dbConnector.getRepository(User);
-        return (await repo.findOne(options)) || null;
+        return (await this._repository.findOne(options)) || null;
     }
 
     async createUser(data: User): Promise<User> {
-        const repo = await this.dbConnector.getRepository(User);
-        return await repo.save(data);
+        return await this._repository.save(data);
     }
 }

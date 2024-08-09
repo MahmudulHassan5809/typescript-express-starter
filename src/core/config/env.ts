@@ -1,6 +1,8 @@
+import { cliLogger } from "../logger";
+
 const DEBUG = process.env.DEBUG || false;
 if (DEBUG) {
-    console.log("DEBUG ENABLED");
+    cliLogger.info("DEBUG ENABLED");
 }
 
 const PORT = process.env.PORT || 3000;

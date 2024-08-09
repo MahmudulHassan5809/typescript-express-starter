@@ -1,10 +1,13 @@
 import { Router } from "express";
-import { usersRouter } from "./modules/users/routes";
-import { authRouter } from "./modules/auth/routes";
+import { createUsersRouter } from "./modules/users/routes";
+import { createAuthRouter } from "./modules/auth/routes";
+import { Container } from "inversify";
 
-const router = Router();
+export const createRouter = (container: Container): Router => {
+    const router = Router();
 
-router.use("/users", usersRouter);
-router.use("/auth", authRouter);
+    router.use("/users", createUsersRouter(container));
+    router.use("/auth", createAuthRouter(container));
 
-export { router };
+    return router;
+};

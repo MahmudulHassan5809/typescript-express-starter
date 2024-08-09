@@ -2,14 +2,18 @@ import { Request, Response } from "express";
 import { AdminUserController } from "./controllers/admin";
 import { Router } from "express";
 import { authMiddleware, isAdminMiddleware } from "../../core/middlewares";
-import container from "../../core/di";
 import { TYPES } from "../../core/di/type";
+import { Container } from "inversify";
 
-const adminUserController = container.get<AdminUserController>(TYPES.AdminUserController);
-const usersRouter = Router();
+export const createUsersRouter = (container: Container): Router => {
+    const usersRouter = Router();
+    const adminUserController = container.get<AdminUserController>(TYPES.AdminUserController);
 
-usersRouter.use(authMiddleware, isAdminMiddleware);
+    usersRouter.use(authMiddleware, isAdminMiddleware);
 
-usersRouter.get("/", async (req: Request, res: Response) => adminUserController.getAllUsers(req, res));
+    usersRouter.get("/", async (req: Request, res: Response) => {
+        await adminUserController.getAllUsers(req, res);
+    });
 
-export { usersRouter };
+    return usersRouter;
+};
