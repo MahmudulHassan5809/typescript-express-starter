@@ -5,6 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        container_name: typescript-express-starter-app
         ports:
             - "8080:8080"
         env_file:
@@ -24,6 +25,7 @@ services:
 
     redis:
         image: redis:6-alpine
+        container_name: typescript-express-starter-redis
         ports:
             - "6380:6379"
         environment:
@@ -34,6 +36,7 @@ services:
 
     postgres:
         image: postgres:14-alpine
+        container_name: typescript-express-starter-postgres
         ports:
             - "5433:5432"
         environment:

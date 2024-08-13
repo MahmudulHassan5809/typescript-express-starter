@@ -120,6 +120,8 @@ typescript-express-starter
 -   To start the development server: `npm run dev`
 -   To build the project: `npm run build`
 -   To run the production server: `npm start`
+-   To generate migrations: `npm run migration:generate src/migrations/{migrationName}`
+-   To run migrations: `npm run migration:run`
 
 ## Contributing
 
