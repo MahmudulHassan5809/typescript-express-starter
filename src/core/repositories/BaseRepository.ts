@@ -12,3 +12,5 @@
 //         return (await this.repository.findOne(options)) || null;
 //     }
 // }
+
+export class BaseRepository {}

@@ -1,11 +1,12 @@
 import { DataSource, DataSourceOptions } from "typeorm";
 import { ENV } from "../config";
+console.log(ENV.DB_URL);
 const options: DataSourceOptions = {
     type: "postgres",
     url: ENV.DB_URL,
     synchronize: false,
     logging: true,
-    entities: ["src/**/models.ts"], // Ensure the path to your entities is correct
+    entities: ["src/**/models.ts"],
     migrations: ["src/migrations/**/*.ts"],
     subscribers: [],
 };

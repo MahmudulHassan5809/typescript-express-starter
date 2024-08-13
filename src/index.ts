@@ -1,12 +1,13 @@
 import { init } from "./core/di";
-import "./core/config";
+import { ENV } from "./core/config";
 import { cliLogger } from "./core/logger";
 
-const port: number = Number(process.env.PORT);
+const port: number = Number(ENV.PORT);
+cliLogger.info(`Starting server on port ${port}`);
 init(port)
     .then(() => {
         cliLogger.info("Server started successfully");
     })
     .catch((err) => {
-        cliLogger.error("Failed to start the application:", err);
+        cliLogger.debug("Failed to start the application:", err);
     });

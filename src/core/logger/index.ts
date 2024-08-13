@@ -2,7 +2,7 @@ import winston from "winston";
 
 const { combine, timestamp, json, printf, label, colorize } = winston.format;
 const timestampFormat = "MMM-DD-YYYY HH:mm:ss";
-const appVersion = process.env.npm_package_version;
+const appVersion = "1.1";
 
 export const httpLogger = winston.createLogger({
     format: combine(

@@ -10,7 +10,7 @@ A starter template for building a RESTful API using TypeScript, Express, TypeORM
 -   **TypeORM** for database interaction.
 -   **BullMQ** for background job processing.
 -   **Redis** for caching and queue management.
--   **Dependency Injection** with tsyringe.
+-   **Dependency Injection** with inversify.
 -   **Decorator-based** routing and caching.
 
 ## Getting Started

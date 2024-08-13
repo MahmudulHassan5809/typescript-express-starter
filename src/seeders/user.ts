@@ -1,10 +1,10 @@
 import bcrypt from "bcrypt";
 import { User } from "../modules/users/models";
-import { initializeDatabase, AppDataSource } from "../core/db";
+import { AppDataSource } from "../core/db";
 
 export class UserSeeder {
     public async run(): Promise<void> {
-        await initializeDatabase();
+        await AppDataSource.initialize();
         const userRepository = AppDataSource.getRepository(User);
         const existingUsers = await userRepository.find();
         if (existingUsers.length > 0) {
