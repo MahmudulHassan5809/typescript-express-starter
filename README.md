@@ -123,6 +123,12 @@ typescript-express-starter
 -   To generate migrations: `npm run migration:generate src/migrations/{migrationName}`
 -   To run migrations: `npm run migration:run`
 
+## Usage Docker
+
+-   To start the development server: `docker compose up --build`
+-   To generate migrations: `docker compose run --rm app npm run typeorm:generate src/migrations/{migrationName}`
+-   To run migrations: `docker compose run --rm app npm run migration:run`
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
